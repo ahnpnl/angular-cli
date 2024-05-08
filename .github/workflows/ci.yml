@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - '**'
       - '[0-9]+.[0-9]+.x'
 
       # Developers can make one-off pushes to `ci-*` branches to manually trigger full CI

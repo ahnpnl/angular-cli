@@ -36,7 +36,9 @@ describe('@ngtools/webpack transformers', () => {
 
         @Component({
           selector: 'app-root',
-          templateUrl: './app.component.html',
+          templateUrl: true === true
+            ? './app.component.html'
+            : './app.component.copy.html',
           styleUrls: ['./app.component.css', './app.component.2.css']
         })
         export class AppComponent {
@@ -66,6 +68,7 @@ describe('@ngtools/webpack transformers', () => {
       `;
 
       const result = transform(input);
+      console.warn('result esm', result);
       expect(tags.oneLine`${result}`).toEqual(tags.oneLine`${output}`);
     });
 
@@ -75,7 +78,9 @@ describe('@ngtools/webpack transformers', () => {
 
         @Component({
           selector: 'app-root',
-          templateUrl: './app.component.html',
+          templateUrl: true === true
+            ? './app.component.html'
+            : './app.component.copy.html',
           styleUrls: ['./app.component.css', './app.component.2.css']
         })
         export class AppComponent {
@@ -102,6 +107,7 @@ describe('@ngtools/webpack transformers', () => {
       `;
 
       const result = transform(input, true, true, ts.ModuleKind.CommonJS);
+      console.warn('result cjs', result);
       expect(tags.oneLine`${result}`).toEqual(tags.oneLine`${output}`);
     });
 
